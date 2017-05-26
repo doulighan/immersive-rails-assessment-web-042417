@@ -3,5 +3,6 @@
 <ul>
   <% @episodes.each do |episode| %>
     <li><%= "Episode #{episode.number} - #{episode.date.strftime("%B %d, %Y")}"%></li>
+    <p><%= link_to "See Guests", episode_path(episode) %> </p>
   <% end %>
 </ul>

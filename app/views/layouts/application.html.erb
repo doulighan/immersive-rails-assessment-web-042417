@@ -9,6 +9,32 @@
   </head>
 
   <body>
+
+  <% if current_user %>
+    <p> <%= "Hello, #{current_user.username}" %> </p>
+    <p> <%= link_to "MAKE APPERENCE", new_episode_guest_path %>
+    <p> <%= link_to "Sign Out", signout_path, method: :delete %> </p>
+  <% else %>
+    <div>
+    <%= form_tag signin_path do %>
+      <%= text_field_tag :username %>
+      <%= password_field_tag :password %>
+      <%= submit_tag "Sign In" %>
+      <% end %>
+  </div>
+  <div>
+    <%= link_to "NEW USER", new_user_path %>
+  <% end %>
+  <hr>
+   <%= link_to "ALL GUESTS", guests_path %>
+   <%= link_to "ALL EPISODES", episodes_path %>
+   <hr>
+  <div>
+    <% flash.each do |key, value| %>
+        <div class="alert alert-<%= key %>"><%= value %></div>
+    <% end %>
+
     <%= yield %>
+    </div>
   </body>
 </html>
